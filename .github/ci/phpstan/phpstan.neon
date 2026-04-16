@@ -1,0 +1,10 @@
+includes:
+    - phpstan-baseline.neon
+parameters:
+    level: 9
+    bootstrapFiles:
+        - ./autoload.php
+    paths:
+        - ../../../src
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
