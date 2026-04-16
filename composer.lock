@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad7ee1b6dd32138584aa840f91f3fb28",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "480256335fd204e3662c2835e8fb7c4e",
+    "packages": [
         {
             "name": "phpstan/phpstan",
             "version": "2.1.48",
@@ -61,6 +60,7 @@
             "time": "2026-04-15T20:24:19+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {},

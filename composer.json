@@ -16,9 +16,7 @@
     }
   ],
   "require"           : {
-    "php" : ">=8.4"
-  },
-  "require-dev"       : {
+    "php"             : ">=8.4",
     "phpstan/phpstan" : "^2.1.48"
   },
   "autoload"          : {
