@@ -98,3 +98,47 @@ vendor/bin/phpstan --generate-baseline
 
 An `autoload.php` is required in the CI directory to bootstrap the project
 autoloader before PHPStan analyses the source.
+
+## Workflows
+
+The [`_workflow-call.yml`](.github/workflows/_workflow-call.yml) reusable
+workflow runs PHPStan against the calling repository's source. It is designed to
+be called from other repositories via `workflow_call`.
+
+### Inputs
+
+| Input                  | Type    | Default                | Description                                                                                                                                           |
+|------------------------|---------|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `paths`                | string  | —                      | **Required.** YAML filter spec with two keys: `ci` (CI config files that trigger a base-branch fetch) and `files` (all files that trigger the check). |
+| `post-pr-comment`      | boolean | `true`                 | Post a PR comment on failure and remove it on success. Disable when the calling workflow handles its own reporting.                                   |
+| `composer-options`     | string  | `''`                   | Extra flags passed to every `composer install` step (e.g. `--ignore-platform-req=ext-openswoole`).                                                    |
+| `php-version`          | string  | `'8.4'`                | PHP version to use.                                                                                                                                   |
+| `ci-directory`         | string  | `'.github/ci/phpstan'` | Path to the CI directory containing `composer.json` and the tool config.                                                                              |
+| `extensions`           | string  | `'mbstring, intl'`     | PHP extensions to install via `shivammathur/setup-php`.                                                                                               |
+| `additional-directory` | string  | `''`                   | Path to an additional Composer dependencies directory to install before running PHPStan. Leave empty to skip.                                         |
+
+### Usage
+
+```yaml
+jobs:
+  phpstan:
+    uses: valkyrjaio/phpstan/.github/workflows/_workflow-call.yml@master
+    permissions:
+      pull-requests: write
+      contents: read
+    with:
+      php-version: '8.4'
+      paths: |
+        ci:
+          - '.github/ci/phpstan/**'
+          - '.github/workflows/phpstan.yml'
+        files:
+          - '.github/ci/phpstan/**'
+          - '.github/workflows/phpstan.yml'
+          - 'src/**/*.php'
+          - 'composer.json'
+    secrets: inherit
+```
+
+`secrets: inherit` is required to pass the `VALKYRJA_GHA_APP_ID` and
+`VALKYRJA_GHA_PRIVATE_KEY` org secrets used for PR comments.
