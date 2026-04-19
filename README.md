@@ -4,73 +4,35 @@
 
 # Valkyrja PHPStan
 
-PHPStan configuration for the Valkyrja project.
+Shared PHPStan configuration for Valkyrja PHP projects — a reference
+configuration and reusable workflow that enforce consistent static analysis
+across consuming repositories.
 
 <p>
     <a href="https://packagist.org/packages/valkyrja/phpstan"><img src="https://poser.pugx.org/valkyrja/phpstan/require/php" alt="PHP Version Require"></a>
     <a href="https://packagist.org/packages/valkyrja/phpstan"><img src="https://poser.pugx.org/valkyrja/phpstan/v" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/valkyrja/phpstan"><img src="https://poser.pugx.org/valkyrja/phpstan/license" alt="License"></a>
-    <!-- <a href="https://packagist.org/packages/valkyrja/phpstan"><img src="https://poser.pugx.org/valkyrja/phpstan/downloads" alt="Total Downloads"></a>-->
-    <a href="https://scrutinizer-ci.com/g/valkyrjaio/phpstan/?branch=26.x"><img src="https://scrutinizer-ci.com/g/valkyrjaio/phpstan/badges/quality-score.png?b=26.x" alt="Scrutinizer"></a>
-    <a href="https://coveralls.io/github/valkyrjaio/phpstan?branch=26.x"><img src="https://coveralls.io/repos/github/valkyrjaio/phpstan/badge.svg?branch=26.x" alt="Coverage Status" /></a>
-    <a href="https://shepherd.dev/github/valkyrjaio/phpstan"><img src="https://shepherd.dev/github/valkyrjaio/phpstan/coverage.svg" alt="Psalm Shepherd" /></a>
+    <a href="https://github.com/valkyrjaio/ci-phpstan-php/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/ci-phpstan-php/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
+    <a href="https://scrutinizer-ci.com/g/valkyrjaio/ci-phpstan-php/?branch=26.x"><img src="https://scrutinizer-ci.com/g/valkyrjaio/phpsci-phpstan-phptan/badges/quality-score.png?b=26.x" alt="Scrutinizer"></a>
+    <a href="https://coveralls.io/github/valkyrjaio/ci-phpstan-php?branch=26.x"><img src="https://coveralls.io/repos/github/valkyrjaio/ci-phpstan-php/badge.svg?branch=26.x" alt="Coverage Status" /></a>
+    <a href="https://shepherd.dev/github/valkyrjaio/ci-phpstan-php"><img src="https://shepherd.dev/github/valkyrjaio/ci-phpstan-php/coverage.svg" alt="Psalm Shepherd" /></a>
     <a href="https://sonarcloud.io/summary/new_code?id=valkyrjaio_phpstan"><img src="https://sonarcloud.io/api/project_badges/measure?project=valkyrjaio_phpstan&metric=sqale_rating" alt="Maintainability Rating" /></a>
 </p>
 
-Build Status
-------------
-
-<table>
-    <tbody>
-        <tr>
-            <td>Linting</td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/phpcodesniffer.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/phpcodesniffer.yml/badge.svg?branch=26.x" alt="PHP Code Sniffer Build Status"></a>
-            </td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/phpcsfixer.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/phpcsfixer.yml/badge.svg?branch=26.x" alt="PHP CS Fixer Build Status"></a>
-            </td>
-        </tr>
-        <tr>
-            <td>Coding Rules</td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/phparkitect.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/phparkitect.yml/badge.svg?branch=26.x" alt="PHPArkitect Build Status"></a>
-            </td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/rector.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/rector.yml/badge.svg?branch=26.x" alt="Rector Build Status"></a>
-            </td>
-        </tr>
-        <tr>
-            <td>Static Analysis</td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/phpstan.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/phpstan.yml/badge.svg?branch=26.x" alt="PHPStan Build Status"></a>
-            </td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/psalm.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/psalm.yml/badge.svg?branch=26.x" alt="Psalm Build Status"></a>
-            </td>
-        </tr>
-        <tr>
-            <td>Testing</td>
-            <td>
-                <a href="https://github.com/valkyrjaio/phpstan/actions/workflows/phpunit.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/phpstan/actions/workflows/phpunit.yml/badge.svg?branch=26.x" alt="PHPUnit Build Status"></a>
-            </td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-
-## Usage
+Usage
+-----
 
 Run via the root Composer script:
 
-```bash
+```
 composer phpstan
 ```
 
 This delegates to `vendor/bin/phpstan --memory-limit=-1` inside the CI
 directory, using the `phpstan.neon` configuration.
 
-## Configuration
+Configuration
+-------------
 
 The CI directory ships with a `phpstan.neon` that serves as the reference
 configuration. Key settings:
@@ -90,7 +52,7 @@ configuration. Key settings:
 
 Known issues are tracked in `phpstan-baseline.neon`. Regenerate it with:
 
-```bash
+```
 vendor/bin/phpstan --generate-baseline
 ```
 
@@ -99,11 +61,12 @@ vendor/bin/phpstan --generate-baseline
 An `autoload.php` is required in the CI directory to bootstrap the project
 autoloader before PHPStan analyses the source.
 
-## Workflows
+Workflows
+---------
 
 The [`_workflow-call.yml`](.github/workflows/_workflow-call.yml) reusable
-workflow runs PHPStan against the calling repository's source. It is designed to
-be called from other repositories via `workflow_call`.
+workflow runs PHPStan against the calling repository's source. It is
+designed to be called from other repositories via `workflow_call`.
 
 ### Inputs
 
@@ -122,7 +85,7 @@ be called from other repositories via `workflow_call`.
 ```yaml
 jobs:
   phpstan:
-    uses: valkyrjaio/phpstan/.github/workflows/_workflow-call.yml@26.x
+    uses: valkyrjaio/ci-phpstan-php/.github/workflows/_workflow-call.yml@26.x
     permissions:
       pull-requests: write
       contents: read
@@ -142,3 +105,29 @@ jobs:
 
 `secrets: inherit` is required to pass the `VALKYRJA_GHA_APP_ID` and
 `VALKYRJA_GHA_PRIVATE_KEY` org secrets used for PR comments.
+
+Contributing
+------------
+
+See [`CONTRIBUTING.md`][contributing url] for the submission process and
+[`VOCABULARY.md`][vocabulary url] for the terminology used across Valkyrja.
+
+Security Issues
+---------------
+
+If you discover a security vulnerability, please follow our
+[disclosure procedure][security vulnerabilities url].
+
+License
+-------
+
+Licensed under the [MIT license][MIT license url]. See
+[`LICENSE.md`](./LICENSE.md).
+
+[contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
+
+[vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
+
+[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/master/SECURITY.md
+
+[MIT license url]: https://opensource.org/licenses/MIT
