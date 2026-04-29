@@ -1,6 +1,13 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/phpstan/compare/v26.1.3...26.x)
+## [Unreleased](https://github.com/valkyrjaio/phpstan/compare/v26.1.4...26.x)
+
+## [v26.1.4](https://github.com/valkyrjaio/phpstan/compare/v26.1.3...v26.1.4) - 2026-04-29
+
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-phpstan-php/pull/15
+* [GitHub] Update ci-phpunit-php workflow refs to v26.3.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-phpstan-php/pull/16
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-phpstan-php/pull/17
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-phpstan-php/pull/18
 
 ## [v26.1.3](https://github.com/valkyrjaio/phpstan/compare/v26.1.2...v26.1.3) - 2026-04-22
 
